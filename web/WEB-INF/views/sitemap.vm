@@ -1,4 +1,4 @@
-<urlset xmlns="http://www.google.com/schemas/sitemap/0.9">
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>http://${host}/</loc>
     <lastmod>${gallery.timestampISO}</lastmod>
@@ -11,6 +11,15 @@
       <lastmod>${album.timestampISO}</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
+      #foreach($photo in $album)
+        <image:image>
+          <image:loc>${photo.url}</image:loc>
+          #if($photo.title)
+            <image:caption>${photo.title}</image:caption>
+          #end
+          # TODO <image:geo_location>${photo.geo}</image:geo_location>
+        </image:image>
+      #end
     </url>
   #end
 </urlset>
